@@ -35,7 +35,6 @@ client.on("messageCreate", async (msg) => {
     try {
         if (msg.content.includes(";ask")) {
             const prompt = msg.content.replace(";ask ", "")
-            console.log(prompt)
             msg.reply("thinking....")
             const output = await call(prompt)
             if (output.length > 2000) {
