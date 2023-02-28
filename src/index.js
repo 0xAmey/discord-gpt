@@ -32,28 +32,29 @@ client.on("messageCreate", async (msg) => {
     if (msg.author.bot) {
         return
     }
+    try {
+        if (msg.content.includes(";ask")) {
+            const prompt = msg.content.replace(";ask ", "")
+            console.log(prompt)
+            msg.reply("thinking....")
+            const output = await call(prompt)
+            if (output.length > 2000) {
+                let startIndex = 0
+                let endIndex = 2000
+                while (startIndex < output.length) {
+                    if (endIndex >= output.length) {
+                        endIndex = output.length
+                    }
+                    msg.reply(output.substring(startIndex, endIndex))
 
-    if (msg.content.includes(";ask")) {
-        const prompt = msg.content.replace(";ask ", "")
-        console.log(prompt)
-        msg.reply("thinking....")
-        const output = await call(prompt)
-        if (output.length > 2000) {
-            let startIndex = 0
-            let endIndex = 2000
-            while (startIndex < output.length) {
-                if (endIndex >= output.length) {
-                    endIndex = output.length
+                    startIndex += 2000
+                    endIndex += 2000
                 }
-                msg.reply(output.substring(startIndex, endIndex))
-
-                startIndex += 2000
-                endIndex += 2000
+            } else {
+                msg.reply(output)
             }
-        } else {
-            msg.reply(output)
         }
-    }
+    } catch (error) {}
 })
 
 client.login(process.env.TOKEN)
