@@ -7,11 +7,11 @@ async function call(input) {
     const api = new ChatGPTUnofficialProxyAPI({
         accessToken: process.env.ACCESS_TOKEN,
         /*https://web-production-2d62.up.railway.app/*/
-        apiReverseProxyUrl: "https://chat.duti.tech/api/conversation",
+        apiReverseProxyUrl:
+            "https://web-production-2d62.up.railway.app/https://chat.duti.tech/api/conversation",
     })
 
     const res = await api.sendMessage(input)
-    console.log(res.text)
     return res.text
 }
 
@@ -35,7 +35,7 @@ client.on("messageCreate", async (msg) => {
     try {
         if (msg.content.includes(";ask")) {
             const prompt = msg.content.replace(";ask ", "")
-            msg.reply("thinking....")
+            msg.reply("loading...")
             const output = await call(prompt)
             if (output.length > 2000) {
                 let startIndex = 0
@@ -54,7 +54,8 @@ client.on("messageCreate", async (msg) => {
             }
         }
     } catch (error) {
-        console.log("Sorry something went wrong, you can try again!")
+        msg.reply("Sorry something went wrong, you can try again!")
+        console.log(error)
     }
 })
 
