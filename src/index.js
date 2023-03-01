@@ -1,16 +1,13 @@
 import "dotenv/config"
 import { Client, IntentsBitField, messageLink } from "discord.js"
 import { ChatGPTUnofficialProxyAPI } from "chatgpt"
-import { start } from "repl"
 
 async function call(input) {
     console.log("Calling API")
     const api = new ChatGPTUnofficialProxyAPI({
         accessToken: process.env.ACCESS_TOKEN,
         /*https://web-production-2d62.up.railway.app/*/
-        apiReverseProxyUrl:
-            "https://web-production-2d62.up.railway.app/https://chat.duti.tech/api/conversation",
-        debug: false,
+        apiReverseProxyUrl: "https://chat.duti.tech/api/conversation",
     })
 
     const res = await api.sendMessage(input)
@@ -56,7 +53,9 @@ client.on("messageCreate", async (msg) => {
                 msg.reply(output)
             }
         }
-    } catch (error) {}
+    } catch (error) {
+        cout << "Sorry something went wrong, you can try again!"
+    }
 })
 
 client.login(process.env.TOKEN)
