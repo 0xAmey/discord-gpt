@@ -7,8 +7,7 @@ async function call(input) {
     const api = new ChatGPTUnofficialProxyAPI({
         accessToken: process.env.ACCESS_TOKEN,
         /*https://web-production-2d62.up.railway.app/*/
-        apiReverseProxyUrl:
-            "https://web-production-2d62.up.railway.app/https://chat.duti.tech/api/conversation",
+        apiReverseProxyUrl: "https://chat.duti.tech/api/conversation",
     })
 
     const res = await api.sendMessage(input)
