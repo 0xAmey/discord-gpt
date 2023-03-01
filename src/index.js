@@ -4,10 +4,12 @@ import { ChatGPTUnofficialProxyAPI } from "chatgpt"
 import { start } from "repl"
 
 async function call(input) {
+    console.log("Calling API")
     const api = new ChatGPTUnofficialProxyAPI({
         accessToken: process.env.ACCESS_TOKEN,
         /*https://web-production-2d62.up.railway.app/*/
-        apiReverseProxyUrl: "https://web-production-2d62.up.railway.app/https://chat.duti.tech/api/conversation",
+        apiReverseProxyUrl:
+            "https://web-production-2d62.up.railway.app/https://chat.duti.tech/api/conversation",
         debug: false,
     })
 
