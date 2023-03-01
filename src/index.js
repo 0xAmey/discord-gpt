@@ -54,7 +54,7 @@ client.on("messageCreate", async (msg) => {
             }
         }
     } catch (error) {
-        cout << "Sorry something went wrong, you can try again!"
+        console.log("Sorry something went wrong, you can try again!")
     }
 })
 
