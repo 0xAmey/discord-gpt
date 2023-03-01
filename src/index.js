@@ -14,6 +14,7 @@ async function call(input) {
     })
 
     const res = await api.sendMessage(input)
+    console.log(res.text)
     return res.text
 }
 
