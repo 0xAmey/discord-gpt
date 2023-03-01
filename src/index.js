@@ -1,7 +1,6 @@
 import "dotenv/config"
 import { Client, IntentsBitField, messageLink } from "discord.js"
 import { ChatGPTUnofficialProxyAPI } from "chatgpt"
-import "unfetch/polyfill"
 
 async function call(input) {
     console.log("Calling API")
